@@ -39,13 +39,6 @@ def save_passwords(passwords):
     with open('passwords.json', 'w') as file:
         json.dump(data, file, indent=4)
 
-    # Save data to text file
-    with open('passwords.txt', 'a') as file:
-        for password in passwords:
-            for website, details in password.items():
-                file.write(f"{website} :\n")
-                file.write(f"  email: {details['email']}\n")
-                file.write(f"  password: {details['password']}\n\n")
 
 def main():
     action = input("What do you want to do ?\n 1. Get a password\n 2. Create passwords\n\nAnswer : ")
