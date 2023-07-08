@@ -7,8 +7,11 @@ $ pip install cryptography
 ```
 
 # How to use ?
+
+## Launching the program
+`python myPasswords.py`
 <img width="460" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/9af37558-edcc-45fe-93c7-08ec44f78f51">
-Launch the program using : python myPasswords.py
+
 
 <img width="457" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/77ba1408-87a8-4bbd-bffa-47fc19506449">
 You can generate 1 or many passwords.
