@@ -37,15 +37,18 @@ After generating all passwords, program will quit.
 If you need to retrieve a password you already registered, just select the (1) option in the first menu.
 First, type the website you're looking for, and then the email linked to this website.
 It will return you the desired informations.
+
 <img width="468" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/77e9849d-1346-4a5f-aef5-949ddfe280db">
 
 ## how to edit your passwords
 To make the program easier to use, the edit function will allow you to modify your passwords already saved.
 To do that, select the option (3) in the first menu.
+
 <img width="470" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/e80e8a59-eff6-470a-837f-c2f9a46b249e">
 
 It will allow you to generate a new random password (1), or to type your own custom password (2).
 
 Selecting the option (1), it will perform exactly as the generating function as before.
 Selecting the option (2), you just will have to type the password you need as the custom password function as before.
+
 <img width="468" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/b20df42d-fbce-4a5c-8e48-ea7fccaaad7a">
