@@ -19,5 +19,5 @@ For each password to generate, you have to choose :
 
 Then, you have to choose if you want a random password (1), or a custom one (2) if you just want to add an existing account to your password database.
 
+## Example using both ways of generating passwords
 <img width="453" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/59e873e4-4cc6-47b9-a7ce-7eee2a3c13fb">
-Example using both ways of generating passwords
