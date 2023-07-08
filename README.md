@@ -15,6 +15,7 @@ $ pip install cryptography
 
 ## Generate passwords
 You can generate 1 password (1), or many passwords (2).
+
 <img width="457" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/77ba1408-87a8-4bbd-bffa-47fc19506449">
 
 For each password to generate, you have to choose :
