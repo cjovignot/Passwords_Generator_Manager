@@ -16,6 +16,7 @@ For each password to generate, you have to choose :
 - The email you're using for your new account
 
 <img width="457" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/9e39508c-6f9a-4f3c-9477-aabbe7397a1c">
+
 Then, you have to choose if you want a random password (1), or a custom one (2) if you just want to add an existing account to your password database.
 
 <img width="453" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/59e873e4-4cc6-47b9-a7ce-7eee2a3c13fb">
