@@ -15,40 +15,21 @@ def generate_password(length):
 def check_existing_accounts(website, email, data):
     for entry in data:
         if website in entry and entry[website]['email'] == email:
-            return entry[website]['password']
+            return entry
     return None
 
 
-def save_passwords(passwords, encryption_key):
-    # Load existing data from JSON file if it exists
-    try:
-        with open('passwords.json', 'r') as file:
-            encrypted_data = file.read()
-            decrypted_data = decrypt_data(encrypted_data, encryption_key)
-            data = json.loads(decrypted_data)
-    except (FileNotFoundError, json.JSONDecodeError):
-        data = []
-
-    # Check for existing accounts
-    for password in passwords:
-        website = list(password.keys())[0]
-        email = password[website]['email']
-        existing_password = check_existing_accounts(website, email, data)
-        if existing_password:
-            print("You already have an account for this website:")
-            print(f"Email: {email}")
-            print(f"Password: {existing_password}")
-            continue
-
-        # Append new passwords to the existing data
-        data.append(password)
-
+def save_passwords(data, encryption_key):
     # Encrypt the data
     encrypted_data = encrypt_data(json.dumps(data), encryption_key)
 
     # Save encrypted data to JSON file
     with open('passwords.json', 'w') as file:
         file.write(encrypted_data)
+
+def edit_password(data, encryption_key):
+    #Encrypt the data
+    encrypted_data = encrypt_data(json.dumps(data), encryption_key)
 
 
 def encrypt_data(data, encryption_key):
@@ -67,7 +48,24 @@ def main():
     load_dotenv()
     encryption_key = os.getenv('ENCRYPTION_KEY')
 
-    action = input("What do you want to do?\n 1. Get a password\n 2. Create passwords\n\nAnswer: ")
+
+    
+    # # TESTING FOR EDIT
+    # # Load encrypted data from JSON file
+    # try:
+    #     with open('passwords.json', 'r') as file:
+    #         encrypted_data = file.read()
+    #         decrypted_data = decrypt_data(encrypted_data, encryption_key)
+    #         data = json.loads(decrypted_data)
+    #         print(json.dumps(data, indent=4))  # Print decrypted data with indentation
+    # except (FileNotFoundError, json.JSONDecodeError):
+    #     data = []
+
+
+
+
+
+    action = input("What do you want to do?\n 1. Get a password\n 2. Generate passwords\n 3. Edit a password\nAnswer: ")
 
     if action == "1":
         website = input("Enter the name of the website: ")
@@ -82,15 +80,17 @@ def main():
         except (FileNotFoundError, json.JSONDecodeError):
             data = []
 
-        existing_password = check_existing_accounts(website, email, data)
-        if existing_password:
+        existing_account = check_existing_accounts(website, email, data)
+        if existing_account:
             print("\n### Your info ###")
-            print(f"  Website: {website}")
-            print(f"  Email: {email}")
-            print(f"  Password: {existing_password}")
+            print(f"Website: {website}")
+            print(f"Email: {email}")
+            print(f"Password: {existing_account[website]['password']}")
             print("### END OF PROGRAM ###\n")
+        else:
+            print("No account found with the given data.\nExiting...")
 
-    if action == "2":
+    elif action == "2":
         num_passwords = int(input("How many passwords do you want to generate? "))
 
         passwords = []
@@ -103,6 +103,7 @@ def main():
                     encrypted_data = file.read()
                     decrypted_data = decrypt_data(encrypted_data, encryption_key)
                     data = json.loads(decrypted_data)
+                    # print(data)
             except (FileNotFoundError, json.JSONDecodeError):
                 data = []
 
@@ -115,20 +116,93 @@ def main():
                 print(f"Password: {existing_password}")
                 continue
 
-            password = generate_password(25)
+            action = input("What do you want to do?\n 1. Generate a random password\n 2. Customized password\nAnswer: ")
 
-            password_data = {
-                website: {
-                    "email": email,
-                    "password": password
+            if action == "1":
+                password = generate_password(25)
+
+                password_data = {
+                    website: {
+                        "email": email,
+                        "password": password
+                    }
                 }
-            }
 
-            passwords.append(password_data)
+                data.append(password_data)
+                passwords = data
 
-            save_passwords(passwords, encryption_key)
+                save_passwords(passwords, encryption_key)
 
-            print("Passwords saved successfully.")
+                print("Passwords saved successfully.")
+
+            if action == "2":
+                password = input("Enter the password: ")
+
+                password_data = {
+                    website: {
+                        "email": email,
+                        "password": password
+                    }
+                }
+
+                data.append(password_data)
+                passwords = data
+                save_passwords(passwords, encryption_key)
+
+                print("Password edited successfully.")
+
+
+    elif action == "3":
+        website = input("Enter the name of the website: ")
+        email = input("Enter the email linked to the website: ")
+
+        # Load encrypted data from JSON file
+        try:
+            with open('passwords.json', 'r') as file:
+                encrypted_data = file.read()
+                decrypted_data = decrypt_data(encrypted_data, encryption_key)
+                data = json.loads(decrypted_data)
+        except (FileNotFoundError, json.JSONDecodeError):
+            data = []
+
+        existing_account = check_existing_accounts(website, email, data)
+        if existing_account:
+            data.remove(existing_account)
+            action = input("What do you want to do?\n 1. Generate a new password\n 2. Edit the password\nAnswer: ")
+
+            if action == "1": 
+                new_password = generate_password(25)
+                existing_account[website]['password'] = new_password
+
+                password_data = {
+                    website: {
+                        "email": email,
+                        "password": new_password
+                    }
+                }
+
+                data.append(password_data)
+                save_passwords(data, encryption_key)
+
+                print("Password edited successfully.")
+
+            elif action == "2":
+                new_password = input("Enter the new password: ")
+                existing_account[website]['password'] = new_password
+
+                password_data = {
+                    website: {
+                        "email": email,
+                        "password": new_password
+                    }
+                }
+
+                data.append(password_data)
+                save_passwords(data, encryption_key)
+
+                print("Password edited successfully.")
+        else:
+            print("No account found with the given data.\nExiting...")
 
 
 if __name__ == '__main__':
