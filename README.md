@@ -24,6 +24,8 @@ For each password to generate, you have to choose :
 <img width="457" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/9e39508c-6f9a-4f3c-9477-aabbe7397a1c">
 
 **If the program finds an account already corresponding to the data you typed, it will display all infos you need before exiting.**
+<img width="470" alt="image" src="https://github.com/cjovignot/Passwords_Generator_Manager/assets/124519396/55b62fa8-8efe-4b3f-8c21-a99d5036284a">
+
 
 Then, you have to choose if you want a random password (1), or a custom one (2) if you just want to add an existing account to your password database.
 
