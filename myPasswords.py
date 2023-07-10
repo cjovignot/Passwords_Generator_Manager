@@ -50,16 +50,16 @@ def main():
 
 
     
-    # # TESTING FOR EDIT
-    # # Load encrypted data from JSON file
-    # try:
-    #     with open('passwords.json', 'r') as file:
-    #         encrypted_data = file.read()
-    #         decrypted_data = decrypt_data(encrypted_data, encryption_key)
-    #         data = json.loads(decrypted_data)
-    #         print(json.dumps(data, indent=4))  # Print decrypted data with indentation
-    # except (FileNotFoundError, json.JSONDecodeError):
-    #     data = []
+    # TESTING FOR EDIT
+    # Load encrypted data from JSON file
+    try:
+        with open('passwords.json', 'r') as file:
+            encrypted_data = file.read()
+            decrypted_data = decrypt_data(encrypted_data, encryption_key)
+            data = json.loads(decrypted_data)
+            print(json.dumps(data, indent=4))  # Print decrypted data with indentation
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = []
 
 
 
