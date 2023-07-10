@@ -4,6 +4,7 @@
 ```
 $ pip install python-dotenv
 $ pip install cryptography
+$ sudo apt install python3-pip
 ```
 
 # How to use ?
